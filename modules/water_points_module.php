@@ -15,7 +15,7 @@ $arr_water_points = array();
 $arr_village_rankings = array();
 $var_number_functional;
 $var_points_per_community;
-$var_broken_points_raknings;
+$var_broken_points_rankings;
 
 function functional_waterpoints($data){
     global $var_number_functional;
@@ -33,7 +33,7 @@ function points_per_community($data){
 function broken_points_ranking($data) {
     global $arr_water_points;
     global $arr_village_rankings;
-    global $var_broken_points_raknings;
+    global $var_broken_points_rankings;
     $arr_water_points_broken = array(); // store broken points per community
     $broken_points = 0;
     foreach ($data as $village) {
@@ -51,12 +51,17 @@ function broken_points_ranking($data) {
             }
         }
     }
-    $var_broken_points_raknings = json_encode($arr_village_rankings);
+    $var_broken_points_rankings = json_encode($arr_village_rankings);
 }
 // RUN FUNCTIONS
-functional_waterpoints($data);
-points_per_community($data);
-broken_points_ranking($data);
+if (empty($data)){
+    die("ERROR: Data source seems empty (".$data_url."). Please check before trying again");
+
+} else {
+    functional_waterpoints($data);
+    points_per_community($data);
+    broken_points_ranking($data);    
+}
 
 $arr_processed_data = array();
 
@@ -69,5 +74,3 @@ fwrite($wp_json_file, json_encode($arr_processed_data));
 fclose($wp_json_file);
 
 ?>
-
-
