@@ -1,7 +1,6 @@
 # ona_code_test
-# by dembede 14.03.2016
 -------------------
-RUNNING THIS MODULE
+RUNNING THE MODULE
 -------------------
 * Execute index.php on a browser to receive outputs in JSON and PHP arrays
 * The module creates a JSON file with processed data each time index.php runs
